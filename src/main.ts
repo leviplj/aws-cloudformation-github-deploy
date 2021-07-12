@@ -78,6 +78,11 @@ export async function run(): Promise<void> {
         required: false
       })
     )
+    const clientRequestToken = parseString(
+      core.getInput('client-request-token', {
+        required: false
+      })
+    )
     const terminationProtections = !!+core.getInput('termination-protection', {
       required: false
     })
@@ -108,6 +113,7 @@ export async function run(): Promise<void> {
       TemplateBody: templateBody,
       TemplateURL: templateUrl,
       Tags: tags,
+      ClientRequestToken: clientRequestToken,
       EnableTerminationProtection: terminationProtections
     }
 

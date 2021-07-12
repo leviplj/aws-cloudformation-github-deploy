@@ -1,6 +1,12 @@
 import * as aws from 'aws-sdk'
 import * as fs from 'fs'
 import { Parameter } from 'aws-sdk/clients/cloudformation'
+import { v1 as uuid1 } from 'uuid'
+
+export function generateClientRequestToken(prefix = 'Stack'): string {
+  const uuid = uuid1()
+  return `${prefix}-${uuid}`
+}
 
 export function isUrl(s: string): boolean {
   let url

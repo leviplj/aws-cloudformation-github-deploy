@@ -69,6 +69,7 @@ describe('Deploy CloudFormation Stack', () => {
       'notification-arns': '',
       'role-arn': '',
       tags: '',
+      'client-request-token': 'MockToken',
       'termination-protection': ''
     }
 
@@ -202,7 +203,8 @@ describe('Deploy CloudFormation Stack', () => {
         { ParameterKey: 'AdminEmail', ParameterValue: 'no-reply@amazon.com' }
       ],
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -267,7 +269,8 @@ describe('Deploy CloudFormation Stack', () => {
         { ParameterKey: 'AdminEmail', ParameterValue: 'no-reply@amazon.com' }
       ],
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(3)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -282,7 +285,8 @@ describe('Deploy CloudFormation Stack', () => {
         'https://s3.amazonaws.com/templates/myTemplate.template?versionId=123ab1cdeKdOW5IH4GAcYbEngcpTJTDW',
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
-      'no-fail-on-empty-changeset': '1'
+      'no-fail-on-empty-changeset': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -309,7 +313,8 @@ describe('Deploy CloudFormation Stack', () => {
         { ParameterKey: 'AdminEmail', ParameterValue: 'no-reply@amazon.com' }
       ],
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -323,7 +328,8 @@ describe('Deploy CloudFormation Stack', () => {
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
-      'termination-protection': '1'
+      'termination-protection': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -350,7 +356,8 @@ describe('Deploy CloudFormation Stack', () => {
         { ParameterKey: 'AdminEmail', ParameterValue: 'no-reply@amazon.com' }
       ],
       DisableRollback: false,
-      EnableTerminationProtection: true
+      EnableTerminationProtection: true,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -364,7 +371,8 @@ describe('Deploy CloudFormation Stack', () => {
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
-      'disable-rollback': '1'
+      'disable-rollback': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -391,7 +399,8 @@ describe('Deploy CloudFormation Stack', () => {
         { ParameterKey: 'AdminEmail', ParameterValue: 'no-reply@amazon.com' }
       ],
       DisableRollback: true,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -406,7 +415,8 @@ describe('Deploy CloudFormation Stack', () => {
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
       'notification-arns':
-        'arn:aws:sns:us-east-2:123456789012:MyTopic,arn:aws:sns:us-east-2:123456789012:MyTopic2'
+        'arn:aws:sns:us-east-2:123456789012:MyTopic,arn:aws:sns:us-east-2:123456789012:MyTopic2',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -437,7 +447,8 @@ describe('Deploy CloudFormation Stack', () => {
         'arn:aws:sns:us-east-2:123456789012:MyTopic2'
       ],
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -451,7 +462,8 @@ describe('Deploy CloudFormation Stack', () => {
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
-      'role-arn': 'arn:aws:iam::123456789012:role/my-role'
+      'role-arn': 'arn:aws:iam::123456789012:role/my-role',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -479,7 +491,8 @@ describe('Deploy CloudFormation Stack', () => {
       ],
       RoleARN: 'arn:aws:iam::123456789012:role/my-role',
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -493,7 +506,8 @@ describe('Deploy CloudFormation Stack', () => {
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
-      tags: '[{"Key":"Test","Value":"Value"}]'
+      tags: '[{"Key":"Test","Value":"Value"}]',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -521,7 +535,8 @@ describe('Deploy CloudFormation Stack', () => {
       ],
       Tags: [{ Key: 'Test', Value: 'Value' }],
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -535,7 +550,8 @@ describe('Deploy CloudFormation Stack', () => {
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
-      'timeout-in-minutes': '10'
+      'timeout-in-minutes': '10',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -563,7 +579,8 @@ describe('Deploy CloudFormation Stack', () => {
       ],
       TimeoutInMinutes: 10,
       DisableRollback: false,
-      EnableTerminationProtection: false
+      EnableTerminationProtection: false,
+      ClientRequestToken: 'MockToken'
     })
     expect(core.setOutput).toHaveBeenCalledTimes(1)
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'stack-id', mockStackId)
@@ -618,7 +635,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockExecuteChangeSet).toHaveBeenNthCalledWith(1, {
       ChangeSetName: 'MockStack-CS',
@@ -633,7 +651,8 @@ describe('Deploy CloudFormation Stack', () => {
       template: 'template.yaml',
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
-      'no-execute-changeset': '1'
+      'no-execute-changeset': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -688,7 +707,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockExecuteChangeSet).toHaveBeenCalledTimes(0)
     expect(mockCfnWaiter).toHaveBeenCalledTimes(1)
@@ -774,7 +794,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockDeleteChangeSet).toHaveBeenNthCalledWith(1, {
       ChangeSetName: 'MockStack-CS',
@@ -789,7 +810,8 @@ describe('Deploy CloudFormation Stack', () => {
       template: 'template.yaml',
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
-      'no-fail-on-empty-changeset': '1'
+      'no-fail-on-empty-changeset': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -880,7 +902,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockDeleteChangeSet).toHaveBeenNthCalledWith(1, {
       ChangeSetName: 'MockStack-CS',
@@ -896,7 +919,8 @@ describe('Deploy CloudFormation Stack', () => {
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
       'no-fail-on-empty-changeset': '1',
-      'no-delete-failed-changeset': '1'
+      'no-delete-failed-changeset': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -987,7 +1011,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockDeleteChangeSet).toHaveBeenCalledTimes(0)
     expect(mockExecuteChangeSet).toHaveBeenCalledTimes(0)
@@ -999,7 +1024,8 @@ describe('Deploy CloudFormation Stack', () => {
       template: 'template.yaml',
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
-      'no-delete-failed-changeset': '1'
+      'no-delete-failed-changeset': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -1085,7 +1111,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockDeleteChangeSet).toHaveBeenCalledTimes(0)
     expect(mockExecuteChangeSet).toHaveBeenCalledTimes(0)
@@ -1097,7 +1124,8 @@ describe('Deploy CloudFormation Stack', () => {
       template: 'template.yaml',
       capabilities: 'CAPABILITY_IAM',
       'parameter-overrides': 'AdminEmail=no-reply@amazon.com',
-      'no-fail-on-empty-changeset': '1'
+      'no-fail-on-empty-changeset': '1',
+      'client-request-token': 'MockToken'
     }
 
     jest.spyOn(core, 'getInput').mockImplementation((name: string) => {
@@ -1187,7 +1215,8 @@ describe('Deploy CloudFormation Stack', () => {
       RoleARN: undefined,
       Tags: undefined,
       TemplateURL: undefined,
-      TimeoutInMinutes: undefined
+      TimeoutInMinutes: undefined,
+      ClientToken: 'MockToken'
     })
     expect(mockDeleteChangeSet).toHaveBeenNthCalledWith(1, {
       ChangeSetName: 'MockStack-CS',

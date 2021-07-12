@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import * as aws from 'aws-sdk'
 import { CreateChangeSetInput, CreateStackInput } from './main'
+import { generateClientRequestToken } from './utils'
 
 export type Stack = aws.CloudFormation.Stack
 
@@ -131,12 +132,24 @@ export async function deployStack(
   if (!stack) {
     core.debug(`Creating CloudFormation Stack`)
 
+    if (!params.ClientRequestToken) {
+      params.ClientRequestToken = generateClientRequestToken(
+        'GHAction-CreateStack'
+      )
+    }
+
     const stack = await cfn.createStack(params).promise()
     await cfn
       .waitFor('stackCreateComplete', { StackName: params.StackName })
       .promise()
 
     return stack.StackId
+  }
+
+  if (!params.ClientRequestToken) {
+    params.ClientRequestToken = generateClientRequestToken(
+      'GHAction-UpdateStack'
+    )
   }
 
   return await updateStack(
@@ -154,7 +167,8 @@ export async function deployStack(
         RoleARN: params.RoleARN,
         RollbackConfiguration: params.RollbackConfiguration,
         NotificationARNs: params.NotificationARNs,
-        Tags: params.Tags
+        Tags: params.Tags,
+        ClientToken: params.ClientRequestToken
       }
     },
     noEmptyChangeSet,
